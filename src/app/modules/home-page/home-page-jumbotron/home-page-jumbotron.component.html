@@ -1,0 +1,12 @@
+<div class="homepage-jumbotron">
+  <div class="homepage-infos">
+    <h1>{{ firstname$ | async }} {{ lastname$ | async }}</h1>
+    <h2>{{ job$ | async }}</h2>
+    <p>{{ city$ | async }}, {{ country$ | async }}</p>
+  </div>
+
+  <div class="homepage-background-img">
+    <img [src]="background$ | async" />
+    <div class="overlay"></div>
+  </div>
+</div>

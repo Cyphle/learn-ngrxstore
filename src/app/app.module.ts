@@ -9,13 +9,19 @@ import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { PortfolioRouteResolverSerializer } from './routes/route-resolver/portfolio-route-resolver.serializer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HomePageComponent } from './routes/home-page/home-page.component';
+import { PortfolioService } from './services/portfolio.service';
+import { HomePageModule } from './modules/home-page/home-page.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
     StoreModule.forRoot(reducers, { initialState: AppInitialState() }),
     EffectsModule.forRoot(effects),
@@ -23,9 +29,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       serializer: PortfolioRouteResolverSerializer,
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    HomePageModule
   ],
   providers: [
-    { provide: RouterStateSerializer, useClass: PortfolioRouteResolverSerializer }
+    { provide: RouterStateSerializer, useClass: PortfolioRouteResolverSerializer },
+    PortfolioService
   ],
   bootstrap: [AppComponent]
 })

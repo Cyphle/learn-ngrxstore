@@ -1,6 +1,7 @@
 import { Params, RouterStateSnapshot } from '@angular/router';
 import { Action } from '@ngrx/store';
 import { RouterStateSerializer } from '@ngrx/router-store';
+import { LoadHomePageAction } from './portfolio-route-resolver.action';
 
 export interface RouterStateUrl {
   url: string;
@@ -20,9 +21,7 @@ export class PortfolioRouteResolverSerializer implements RouterStateSerializer<R
     const {url, root: {queryParams}}: any = routerState;
     const {params}: any = route;
 
-    // Ceci est un exemple et sera modifié une fois les pages créées
-    // const action = url.indexOf('experiences') >= 0 ? () => new LoadExperiencesAction() : () => new LoadHomePageAction();
-    const action = undefined;
+    const action = () => new LoadHomePageAction();
 
     return {url, params, queryParams, action};
   }
