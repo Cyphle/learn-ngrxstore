@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/about",
+    "picture": "/assets/philosophie.jpg",
+    "content": "Ma philosophie, mes skills, ma formation et quelques docs"
+  },
+  {
+    "path": "/experiences",
+    "picture": "/assets/experience.jpg",
+    "content": "Mes expériences"
+  },
+  {
+    "path": "/art",
+    "picture": "/assets/passion.jpg",
+    "content": "Mes passions : le dessin et la photo"
+  }
+]

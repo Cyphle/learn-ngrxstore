@@ -1,0 +1,9 @@
+{
+  "firstname": "Cyril",
+  "lastname": "PHAM-LE",
+  "city": "Paris",
+  "country": "France",
+  "job": "Fullstack Software Craftsman",
+  "logo": "/assets/logo.png",
+  "background": "/assets/homepage.jpg"
+}

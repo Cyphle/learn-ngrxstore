@@ -1,0 +1,8 @@
+[
+  {
+    "title": "Banana",
+    "date": 2017,
+    "description": "Application simple de gestion de comptes bancaires",
+    "skills": ["Java", "Spring"]
+  }
+]
