@@ -1,0 +1,34 @@
+:host {
+  .experience {
+    text-align: left;
+    padding: 0 20px;
+
+    .company {
+      .company-logo {
+        max-width: 80px;
+        vertical-align: middle;
+        display: inline-block;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .company-name {
+        font-weight: bold;
+        vertical-align: middle;
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 1.2em;
+      }
+    }
+
+    .experience-content {
+      margin-top: 20px;
+
+      .experience-date {
+        font-style: italic;
+      }
+    }
+  }
+}

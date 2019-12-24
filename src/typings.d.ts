@@ -20,6 +20,15 @@ interface HomePageMapEntry {
   content: string;
 }
 
+interface Experience {
+  company: string;
+  logo: string;
+  job: string;
+  description: string;
+  startDate: string;
+  endDate?: string;
+}
+
 interface ErrorResponse {
   error: string;
 }

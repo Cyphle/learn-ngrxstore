@@ -6,6 +6,7 @@ import { Action } from '@ngrx/store';
 import { ROUTER_NAVIGATION, RouterNavigationAction } from '@ngrx/router-store';
 import { RouterStateUrl } from './portfolio-route-resolver.serializer';
 import {
+  LoadExperiencesAction, LoadExperiencesFailureAction, LoadExperiencesSuccessAction,
   LoadHomePageAction, LoadHomePageArgumentsFailureAction, LoadHomePageArgumentsSuccessAction, LoadHomePageIdentityFailureAction,
   LoadHomePageIdentitySuccessAction, LoadHomePageMapFailureAction, LoadHomePageMapSuccessAction,
   PortfolioRouteResolverActionTypes
@@ -67,6 +68,20 @@ export class PortfolioRouteResolverEffects {
   @Effect({ dispatch: false }) public loadHomePageMapFailure$: Observable<Action> = this.actions$
     .pipe(
       ofType<LoadHomePageMapFailureAction>(PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_MAP_FAILURE),
+      tap(() => this.router.navigate(['/error']))
+    );
+
+  @Effect() public loadExperiences$: Observable<Action> = this.actions$
+    .pipe(
+      ofType<LoadExperiencesAction>(PortfolioRouteResolverActionTypes.LOAD_EXPERIENCES),
+      switchMap(() => this.portfolioService.getExperiences()),
+      map((experiences: Experience[]) => new LoadExperiencesSuccessAction(experiences)),
+      catchError((error: ErrorResponse) => of(new LoadExperiencesFailureAction(error)))
+    );
+
+  @Effect({ dispatch: false }) public loadExperiencesFailure: Observable<Action> = this.actions$
+    .pipe(
+      ofType<LoadExperiencesFailureAction>(PortfolioRouteResolverActionTypes.LOAD_EXPERIENCES_FAILURE),
       tap(() => this.router.navigate(['/error']))
     );
 }

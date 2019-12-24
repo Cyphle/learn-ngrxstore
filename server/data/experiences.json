@@ -1,8 +1,17 @@
 [
   {
-    "job": "PO"
+    "company": "La Combe Du Lion Vert",
+    "logo": "/assets/lacombelogo.png",
+    "job": "Software Craftsman Full Stack",
+    "description": "Full Stack software developer au sein de La Combe Du Lion Vert, j'apporte un regard équilibré entre la technique et le fonctionnel des projets. Être software craftsman c'est être un artisan du code qui porte un grand intérêt au contexte de la mission, aussi bien. au niveau fonctionnel qu'au niveau organisationnel.",
+    "startDate": "2017-08-01",
+    "endDate": "2019-11-30"
   },
   {
-    "job": "DEV"
+    "company": "La Foncière Numérique",
+    "logo": "/assets/lfnlogo.png",
+    "job": "Software Craftsman Full Stack Freelance",
+    "description": "Au sein de La Foncière Numérique, j'interviens en tant que développeur full stack. Ma mission à délivrer de la valeur à la solution de La Foncière Numérique ainsi que d'apporter mon savoir et expérience dans les bonnes pratiques de développement et de fonctionnement d'équipe.",
+    "startDate": "2019-12-02"
   }
 ]

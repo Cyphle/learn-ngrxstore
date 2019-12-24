@@ -14,11 +14,14 @@ import { PortfolioService } from './services/portfolio.service';
 import { HomePageModule } from './modules/home-page/home-page.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedComponentsModule } from './shared/shared-components.module';
+import { ExperiencesModule } from './modules/experiences/experiences.module';
+import { ExperiencesPageComponent } from './routes/experiences/experiences-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    ExperiencesPageComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import { SharedComponentsModule } from './shared/shared-components.module';
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     HomePageModule,
+    ExperiencesModule,
     SharedComponentsModule
   ],
   providers: [

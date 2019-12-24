@@ -1,6 +1,6 @@
 import {
   completeArgumentPictureWithUrl,
-  completeArgumentsPictureWithUrl, completeHomePageMapEntriesPictureWithUrl,
+  completeArgumentsPictureWithUrl, completeExperienceLogoWithUrl, completeExperiencesLogoWithUrl, completeHomePageMapEntriesPictureWithUrl,
   completeHomePageMapEntryPictureWithUrl
 } from './image-path.helpers';
 
@@ -67,7 +67,6 @@ describe('src/app/helpers/image-path.helpers', () => {
     });
   });
 
-
   it('should complete path of picture of home page map with given url', () => {
     const entries: HomePageMapEntry[] = [
       {
@@ -94,6 +93,68 @@ describe('src/app/helpers/image-path.helpers', () => {
         path: '/url',
         picture: 'http://localhost:3000/assets/front.png',
         content: 'My content'
+      }
+    ]);
+  });
+
+  it('should complete path of experience logo with given url', () => {
+    const entry: Experience = {
+      company: 'La Combe Du Lion Vert',
+      logo: '/assets/lacombelogo.png',
+      job: 'Software Craftsman Full Stack',
+      description: 'Blabla',
+      startDate: '2017-08-01',
+      endDate: '2019-11-30'
+    };
+
+    const modifiedEntry = completeExperienceLogoWithUrl(entry, 'http://localhost:3000');
+
+    expect(modifiedEntry).toEqual({
+      company: 'La Combe Du Lion Vert',
+      logo: 'http://localhost:3000/assets/lacombelogo.png',
+      job: 'Software Craftsman Full Stack',
+      description: 'Blabla',
+      startDate: '2017-08-01',
+      endDate: '2019-11-30'
+    });
+  });
+
+  it('should complete path of experiences logo with given url', () => {
+    const entries: Experience[] = [
+      {
+        company: 'La Combe Du Lion Vert',
+        logo: '/assets/lacombelogo.png',
+        job: 'Software Craftsman Full Stack',
+        description: 'Blabla',
+        startDate: '2017-08-01',
+        endDate: '2019-11-30'
+      },
+      {
+        company: 'La Foncière Numérique',
+        logo: '/assets/lacombelogo.png',
+        job: 'Software Craftsman Full Stack Freelance',
+        description: 'Blabla',
+        startDate: '2019-12-02'
+      }
+    ];
+
+    const modifiedEntries = completeExperiencesLogoWithUrl(entries, 'http://localhost:3000');
+
+    expect(modifiedEntries).toEqual([
+      {
+        company: 'La Combe Du Lion Vert',
+        logo: 'http://localhost:3000/assets/lacombelogo.png',
+        job: 'Software Craftsman Full Stack',
+        description: 'Blabla',
+        startDate: '2017-08-01',
+        endDate: '2019-11-30'
+      },
+      {
+        company: 'La Foncière Numérique',
+        logo: 'http://localhost:3000/assets/lacombelogo.png',
+        job: 'Software Craftsman Full Stack Freelance',
+        description: 'Blabla',
+        startDate: '2019-12-02'
       }
     ]);
   });

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { cold, hot } from 'jasmine-marbles';
 import {
+  LoadExperiencesAction, LoadExperiencesFailureAction, LoadExperiencesSuccessAction,
   LoadHomePageAction, LoadHomePageArgumentsFailureAction, LoadHomePageArgumentsSuccessAction,
   LoadHomePageIdentityFailureAction,
   LoadHomePageIdentitySuccessAction, LoadHomePageMapFailureAction, LoadHomePageMapSuccessAction
@@ -52,6 +53,23 @@ describe('src/app/routes/route-resolver/portfolio-route-resolver.effects', () =>
       path: '/art',
       picture: '../../../../../assets/passion.jpg',
       content: 'Mes passions : le dessin et la photo'
+    }
+  ];
+  const experiences: Experience[] = [
+    {
+      company: 'La Combe Du Lion Vert',
+      logo: '/assets/lacombelogo.png',
+      job: 'Software Craftsman Full Stack',
+      description: 'Blabla',
+      startDate: '2017-08-01',
+      endDate: '2019-11-30'
+    },
+    {
+      company: 'La Foncière Numérique',
+      logo: '/assets/lacombelogo.png',
+      job: 'Software Craftsman Full Stack Freelance',
+      description: 'Blabla',
+      startDate: '2019-12-02'
     }
   ];
 
@@ -164,6 +182,34 @@ describe('src/app/routes/route-resolver/portfolio-route-resolver.effects', () =>
     actions = hot('--a', { a: action });
 
     expect(effects.loadHomePageMapFailure$).toBeObservable(cold('--b', { b: action }));
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/error']);
+  });
+
+  it('should dispatch load experiences action', () => {
+    portfolioServiceSpy.getExperiences.and.returnValue(cold('-a', { a: experiences }));
+    const action = new LoadExperiencesAction();
+    const expectedAction = new LoadExperiencesSuccessAction(experiences);
+
+    actions = hot('--a', { a: action });
+
+    expect(effects.loadExperiences$).toBeObservable(cold('---b', { b: expectedAction }));
+    expect(portfolioServiceSpy.getExperiences).toHaveBeenCalled();
+  });
+
+  it('should dispatch load experience failure when there is an error', () => {
+    portfolioServiceSpy.getExperiences.and.returnValue(cold('-#', undefined, { error: 'Error' }));
+
+    actions = hot('-a', { a: new LoadExperiencesAction() });
+
+    expect(effects.loadExperiences$).toBeObservable(cold('--(b|)', { b: new LoadExperiencesFailureAction({ error: 'Error' }) }));
+  });
+
+  it('should handle load experience failure', () => {
+    const action = new LoadExperiencesFailureAction({ error: 'Error' });
+
+    actions = hot('--a', { a: action });
+
+    expect(effects.loadExperiencesFailure).toBeObservable(cold('--b', { b: action }));
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/error']);
   });
 });

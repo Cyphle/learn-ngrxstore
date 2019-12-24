@@ -87,4 +87,32 @@ describe('src/app/services/portfolio.service', () => {
     expect(req.request.method).toBe('GET');
     req.flush(data);
   });
+
+  it('should get experiences', () => {
+    // Given
+    const experiences: Experience[] = [
+      {
+        company: 'La Combe Du Lion Vert',
+        logo: '/assets/lacombelogo.png',
+        job: 'Software Craftsman Full Stack',
+        description: 'Blabla',
+        startDate: '2017-08-01',
+        endDate: '2019-11-30'
+      },
+      {
+        company: 'La Foncière Numérique',
+        logo: '/assets/lacombelogo.png',
+        job: 'Software Craftsman Full Stack Freelance',
+        description: 'Blabla',
+        startDate: '2019-12-02'
+      }
+    ];
+    // when
+    service.getExperiences().subscribe(exp => expect(exp).toEqual(experiences));
+
+    // then
+    const req = httpMock.expectOne('http://localhost:3000/rest/v1/experiences');
+    expect(req.request.method).toBe('GET');
+    req.flush(experiences);
+  });
 });

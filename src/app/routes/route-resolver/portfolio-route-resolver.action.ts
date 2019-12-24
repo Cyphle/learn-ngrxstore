@@ -8,6 +8,9 @@ export const PortfolioRouteResolverActionTypes = {
   LOAD_HOME_PAGE_ARGUMENTS_FAILURE: '[Route Resolver] Load Home Page Arguments Failure',
   LOAD_HOME_PAGE_MAP_SUCCESS: '[Route Resolver] Load Home Page Map Success',
   LOAD_HOME_PAGE_MAP_FAILURE: '[Route Resolver] Load Home Page Map Failure',
+  LOAD_EXPERIENCES: '[Route Resolver] Load experiences',
+  LOAD_EXPERIENCES_SUCCESS: '[Route Resolver] Load experiences Success',
+  LOAD_EXPERIENCES_FAILURE: '[Route Resolver] Load experiences Failure',
 };
 
 export class LoadHomePageAction implements Action {
@@ -55,6 +58,28 @@ export class LoadHomePageMapSuccessAction implements Action {
 
 export class LoadHomePageMapFailureAction implements Action {
   readonly type: string = PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_MAP_FAILURE;
+
+  constructor(public payload: ErrorResponse) {
+  }
+}
+
+export class LoadExperiencesAction implements Action {
+  readonly type: string = PortfolioRouteResolverActionTypes.LOAD_EXPERIENCES;
+  readonly payload: void;
+
+  constructor() {
+  }
+}
+
+export class LoadExperiencesSuccessAction implements Action {
+  readonly type: string = PortfolioRouteResolverActionTypes.LOAD_EXPERIENCES_SUCCESS;
+
+  constructor(public payload: Experience[]) {
+  }
+}
+
+export class LoadExperiencesFailureAction implements Action {
+  readonly type: string = PortfolioRouteResolverActionTypes.LOAD_EXPERIENCES_FAILURE;
 
   constructor(public payload: ErrorResponse) {
   }

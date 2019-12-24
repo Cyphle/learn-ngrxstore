@@ -18,4 +18,7 @@ export class PortfolioService {
 
   public getHomePageMap = (): Observable<HomePageMapEntry[]> =>
     this.http.get<HomePageMapEntry[]>(`${environment.homeUrl}${homeRestPath}/home-page-map`)
+
+  public getExperiences = (): Observable<Experience[]> =>
+    this.http.get<Experience[]>(`${environment.homeUrl}${homeRestPath}/experiences`)
 }
