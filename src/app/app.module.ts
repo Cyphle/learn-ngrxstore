@@ -13,6 +13,7 @@ import { HomePageComponent } from './routes/home-page/home-page.component';
 import { PortfolioService } from './services/portfolio.service';
 import { HomePageModule } from './modules/home-page/home-page.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedComponentsModule } from './shared/shared-components.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
       serializer: PortfolioRouteResolverSerializer,
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
-    HomePageModule
+    HomePageModule,
+    SharedComponentsModule
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: PortfolioRouteResolverSerializer },

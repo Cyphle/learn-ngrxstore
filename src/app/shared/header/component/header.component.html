@@ -1,0 +1,16 @@
+<header>
+  <a href="javascript:void(0);" class="icon" (click)="showHideMenu()">
+    <i class="fa fa-bars"></i>
+  </a>
+
+  <nav [class.responsive]="responsive===true">
+    <a routerLink="/" routerLinkActive="active" class="logo">
+      <img [src]="logo$ | async" alt="Logo">
+    </a>
+    <a routerLink="/about" routerLinkActive="active" (click)="hideMenu()">A propos</a>
+    <a routerLink="/experiences" routerLinkActive="active" (click)="hideMenu()">Experiences</a>
+    <a routerLink="/art" routerLinkActive="active" (click)="hideMenu()">Dessin</a>
+  </nav>
+
+  <div class="title">Portfolio de <span class="main-colored">{{ firstname$ | async }} {{ lastname$ | async }}</span></div>
+</header>

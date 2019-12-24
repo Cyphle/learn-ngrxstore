@@ -1,0 +1,107 @@
+@import "../../../../styles/variables";
+
+:host {
+  header {
+    display: flex;
+    height: $header-height;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  nav {
+    flex-grow: 1;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: $header-height;
+    overflow: hidden;
+
+    a {
+      &:first-child {
+        padding: 0 0;
+      }
+    }
+  }
+
+  a {
+    color: $dark-grey;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 1.2em;
+    -webkit-transition: color 200ms ease-in;
+    -moz-transition: color 200ms ease-in;
+    -o-transition: color 200ms ease-in;
+    transition: color 200ms ease-in;
+
+    &:hover {
+      color: $main-color;
+    }
+
+    &.active {
+      color: $main-color;
+    }
+  }
+
+  .icon {
+    display: none;
+    margin-left: 10px;
+  }
+
+  .logo {
+    img {
+      max-height: 50px;
+      max-width: 100px;
+    }
+  }
+
+  .title {
+    margin-right: 30px;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+
+  .main-colored {
+    color: $main-color;
+  }
+
+  @media screen and (max-width: 800px) {
+    a {
+      display: none;
+
+      &.icon {
+        display: block;
+      }
+    }
+
+    nav {
+      display: block;
+      z-index: 20;
+      position: absolute;
+      height: auto;
+
+      &.responsive {
+        width: 100%;
+        margin: 0;
+        top: $header-height;
+        background-color: $light-grey;
+
+        a {
+          display: block;
+          text-align: left;
+
+          &:first-child {
+            width: 10%;
+            padding: 16px 14px;
+          }
+        }
+      }
+    }
+
+    .title {
+      text-align: right;
+      width: 100%;
+    }
+  }
+}

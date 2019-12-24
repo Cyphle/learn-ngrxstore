@@ -1,0 +1,25 @@
+<footer>
+  <section>
+    <div>Curriculum Vitae</div>
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active">Accueil</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">A propos</a></li>
+      <li><a routerLink="/experiences" routerLinkActive="active">Experiences</a></li>
+      <li><a routerLink="/art" routerLinkActive="active">Dessin</a></li>
+    </ul>
+  </section>
+
+  <div class="logo">
+    <img [src]="logo$ | async" alt="Logo" />
+  </div>
+
+  <section>
+    <div>Contact</div>
+    <ul class="infos">
+      <li><a href="https://www.linkedin.com/in/cyrilphamle/" title="LinkedIn"><img src="../../../../assets/linkedin.png" alt="Linkedin" /></a></li>
+      <li><a href="https://github.com/Cyphle" title="Github"><img src="../../../../assets/github.png" alt="Github" /></a></li>
+      <li><a href="https://instagram.com/cyphle" title="Instagram"><img src="../../../../assets/instagram.png" alt="Instagram" /></a></li>
+      <li><button><img src="../../../../assets/mail.png" alt="Contact" /></button></li>
+    </ul>
+  </section>
+</footer>
