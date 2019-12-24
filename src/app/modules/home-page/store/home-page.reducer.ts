@@ -20,6 +20,16 @@ export function homePageReducer(state: State = InitialState, { type, payload }: 
         ...state,
         identity: payload
       };
+    case PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_ARGUMENTS_SUCCESS:
+      return {
+        ...state,
+        arguments: payload
+      };
+    case PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_MAP_SUCCESS:
+      return {
+        ...state,
+        mapEntries: payload
+      };
     default:
       return state;
   }

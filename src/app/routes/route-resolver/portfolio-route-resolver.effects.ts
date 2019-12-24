@@ -6,8 +6,8 @@ import { Action } from '@ngrx/store';
 import { ROUTER_NAVIGATION, RouterNavigationAction } from '@ngrx/router-store';
 import { RouterStateUrl } from './portfolio-route-resolver.serializer';
 import {
-  LoadHomePageAction, LoadHomePageIdentityFailureAction,
-  LoadHomePageIdentitySuccessAction,
+  LoadHomePageAction, LoadHomePageArgumentsFailureAction, LoadHomePageArgumentsSuccessAction, LoadHomePageIdentityFailureAction,
+  LoadHomePageIdentitySuccessAction, LoadHomePageMapFailureAction, LoadHomePageMapSuccessAction,
   PortfolioRouteResolverActionTypes
 } from './portfolio-route-resolver.action';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
@@ -39,6 +39,34 @@ export class PortfolioRouteResolverEffects {
   @Effect({ dispatch: false }) public loadHomePageIdentityFailure$: Observable<Action> = this.actions$
     .pipe(
       ofType<LoadHomePageIdentityFailureAction>(PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_IDENTITY_FAILURE),
+      tap(() => this.router.navigate(['/error']))
+    );
+
+  @Effect() public loadHomePageArguments$: Observable<Action> = this.actions$
+    .pipe(
+      ofType<LoadHomePageAction>(PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE),
+      switchMap(() => this.portfolioService.getArguments()),
+      map((args: Argument[]) => new LoadHomePageArgumentsSuccessAction(args)),
+      catchError((error: ErrorResponse) => of(new LoadHomePageArgumentsFailureAction(error)))
+    );
+
+  @Effect({ dispatch: false }) public loadHomePageArgumentsFailure$: Observable<Action> = this.actions$
+    .pipe(
+      ofType<LoadHomePageArgumentsFailureAction>(PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_ARGUMENTS_FAILURE),
+      tap(() => this.router.navigate(['/error']))
+    );
+
+  @Effect() public loadHomePageMap$: Observable<Action> = this.actions$
+    .pipe(
+      ofType<LoadHomePageAction>(PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE),
+      switchMap(() => this.portfolioService.getHomePageMap()),
+      map((entries: HomePageMapEntry[]) => new LoadHomePageMapSuccessAction(entries)),
+      catchError((error: ErrorResponse) => of(new LoadHomePageMapFailureAction(error)))
+    );
+
+  @Effect({ dispatch: false }) public loadHomePageMapFailure$: Observable<Action> = this.actions$
+    .pipe(
+      ofType<LoadHomePageMapFailureAction>(PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_MAP_FAILURE),
       tap(() => this.router.navigate(['/error']))
     );
 }

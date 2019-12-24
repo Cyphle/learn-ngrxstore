@@ -38,4 +38,53 @@ describe('src/app/services/portfolio.service', () => {
     expect(req.request.method).toBe('GET');
     req.flush(data);
   });
+
+  it('should get arguments information', () => {
+    const data = [
+      {
+        picture: '../../../assets/dev-back.png',
+        title: 'Développeur Back',
+        content: 'Je fais du dév back avec du NodeJS, Java, Kotlin'
+      },
+      {
+        picture: '../../../assets/dev-front.png',
+        title: 'Développeur Front',
+        content: 'Je fais du dév front avec React et Angular pour mettre un peu de couleur dans ce monde'
+      }
+    ];
+    // when
+    service.getArguments().subscribe(args => expect(args).toEqual(data));
+
+    // then
+    const req = httpMock.expectOne('http://localhost:3000/rest/v1/arguments');
+    expect(req.request.method).toBe('GET');
+    req.flush(data);
+  });
+
+  it('should get home page map information', () => {
+    const data: HomePageMapEntry[] = [
+      {
+        path: '/about',
+        picture: '../../../../../assets/philosophie.jpg',
+        content: 'Ma philosophie, mes skills, ma formation et quelques docs'
+      },
+      {
+        path: '/experience',
+        picture: '../../../../../assets/experience.jpg',
+        content: 'Mes expériences'
+      },
+      {
+        path: '/art',
+        picture: '../../../../../assets/passion.jpg',
+        content: 'Mes passions : le dessin et la photo'
+      }
+    ];
+    // when
+    service.getHomePageMap().subscribe(entries => expect(entries).toEqual(data));
+
+    // then
+    const req = httpMock.expectOne('http://localhost:3000/rest/v1/home-page-map');
+    expect(req.request.method).toBe('GET');
+    req.flush(data);
+  });
 });

@@ -1,0 +1,14 @@
+<div class="home-page-map">
+  <h3>Si vous voulez en savoir plus sur moi</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4" *ngFor="let entry of mapEntries$ | async ">
+        <a routerLink="{{ entry.path }}" routerLinkActive="active">
+          <img src="{{ entry.picture }}" alt="Moi, moi et moi" />
+          <div class="overlay"></div>
+          <p>{{ entry.content }}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

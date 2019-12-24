@@ -3,7 +3,11 @@ import { Action } from '@ngrx/store';
 export const PortfolioRouteResolverActionTypes = {
   LOAD_HOME_PAGE: '[Route Resolver] Load Home Page',
   LOAD_HOME_PAGE_IDENTITY_SUCCESS: '[Route Resolver] Load Home Page Identity Success',
-  LOAD_HOME_PAGE_IDENTITY_FAILURE: '[Route Resolver] Load Home Page Identity Failure'
+  LOAD_HOME_PAGE_IDENTITY_FAILURE: '[Route Resolver] Load Home Page Identity Failure',
+  LOAD_HOME_PAGE_ARGUMENTS_SUCCESS: '[Route Resolver] Load Home Page Arguments Success',
+  LOAD_HOME_PAGE_ARGUMENTS_FAILURE: '[Route Resolver] Load Home Page Arguments Failure',
+  LOAD_HOME_PAGE_MAP_SUCCESS: '[Route Resolver] Load Home Page Map Success',
+  LOAD_HOME_PAGE_MAP_FAILURE: '[Route Resolver] Load Home Page Map Failure',
 };
 
 export class LoadHomePageAction implements Action {
@@ -23,6 +27,34 @@ export class LoadHomePageIdentitySuccessAction implements Action {
 
 export class LoadHomePageIdentityFailureAction implements Action {
   readonly type: string = PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_IDENTITY_FAILURE;
+
+  constructor(public payload: ErrorResponse) {
+  }
+}
+
+export class LoadHomePageArgumentsSuccessAction implements Action {
+  readonly type: string = PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_ARGUMENTS_SUCCESS;
+
+  constructor(public payload: Argument[]) {
+  }
+}
+
+export class LoadHomePageArgumentsFailureAction implements Action {
+  readonly type: string = PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_ARGUMENTS_FAILURE;
+
+  constructor(public payload: ErrorResponse) {
+  }
+}
+
+export class LoadHomePageMapSuccessAction implements Action {
+  readonly type: string = PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_MAP_SUCCESS;
+
+  constructor(public payload: HomePageMapEntry[]) {
+  }
+}
+
+export class LoadHomePageMapFailureAction implements Action {
+  readonly type: string = PortfolioRouteResolverActionTypes.LOAD_HOME_PAGE_MAP_FAILURE;
 
   constructor(public payload: ErrorResponse) {
   }

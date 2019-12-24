@@ -1,0 +1,9 @@
+<div class="container">
+  <h3>My key features</h3>
+  <div class="row" *ngFor="let argsRow of arguments$ | async ">
+    <app-home-page-argument
+      *ngFor="let argument of argsRow"
+      [argument]="argument"
+    ></app-home-page-argument>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+@import "../../../../styles/variables.scss";
+
+:host {
+  .argument {
+    .argument-picture {
+      text-align: center;
+      width: 100%;
+
+      img {
+        width: 50%;
+      }
+    }
+
+    .argument-content{
+      h4 {
+        color: $main-color;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 1.3em;
+      }
+    }
+  }
+}

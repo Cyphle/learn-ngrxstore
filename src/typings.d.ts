@@ -8,6 +8,18 @@ interface Identity {
   background: string;
 }
 
+interface Argument {
+  picture: string;
+  title: string;
+  content: string;
+}
+
+interface HomePageMapEntry {
+  path: string;
+  picture: string;
+  content: string;
+}
+
 interface ErrorResponse {
   error: string;
 }
