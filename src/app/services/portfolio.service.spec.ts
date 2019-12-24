@@ -115,4 +115,24 @@ describe('src/app/services/portfolio.service', () => {
     expect(req.request.method).toBe('GET');
     req.flush(experiences);
   });
+
+  it('should update an experience', () => {
+    // Given
+    const experience: Experience = {
+      company: 'La Foncière Numérique',
+      logo: '/assets/lacombelogo.png',
+      job: 'Software Craftsman Full Stack Freelance',
+      description: 'Blabla',
+      startDate: '2019-12-02'
+    };
+
+    // when
+    service.updateExperience(experience).subscribe(exp => expect(exp).toEqual({}));
+
+    // then
+    const req = httpMock.expectOne('http://localhost:3000/rest/v1/experiences');
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toBe(experience);
+    req.flush({});
+  });
 });

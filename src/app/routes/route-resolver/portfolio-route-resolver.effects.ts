@@ -19,7 +19,6 @@ export class PortfolioRouteResolverEffects {
   constructor(private actions$: Actions,
               private router: Router,
               private portfolioService: PortfolioService) {
-
   }
 
   @Effect() public routerNavigation$: Observable<Action> = this.actions$

@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedComponentsModule } from './shared/shared-components.module';
 import { ExperiencesModule } from './modules/experiences/experiences.module';
 import { ExperiencesPageComponent } from './routes/experiences/experiences-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { ExperiencesPageComponent } from './routes/experiences/experiences-page.
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     HomePageModule,
     ExperiencesModule,
-    SharedComponentsModule
+    SharedComponentsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: RouterStateSerializer, useClass: PortfolioRouteResolverSerializer },

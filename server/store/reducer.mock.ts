@@ -6,6 +6,10 @@ export const reducer = (state: any, action: MockAction): any  => {
       return state[action.payload.type] = action.payload.data;
     case ActionTypes.MOCK_UPDATE_TITLE:
       return state.identity.title = action.payload;
+    case ActionTypes.MOCK_UPDATE_EXPERIENCE:
+      return state.experiences = state
+        .experiences
+        .map(experience => experience.company === action.payload.company ? action.payload : experience);
     default:
       return state;
   }
